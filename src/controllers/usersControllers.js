@@ -18,7 +18,7 @@ const bcrypt = require("bcryptjs");
 //User Registration Get
 exports.register_users_get = async (req, res) => {
 try {
-    UserRegister.find({
+   await UserRegister.find({
     }, function(err, usersData) {
         if (err) throw err;
         if (usersData) {
