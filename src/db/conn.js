@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/schoolsInfo", {
+mongoose.connect("mongodb+srv://akhi945681:<Eduflow@765>@cluster0.qtm3a.mongodb.net/schoolsInfo?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
