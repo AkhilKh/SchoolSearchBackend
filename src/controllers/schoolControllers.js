@@ -42,6 +42,9 @@ exports.school_register_post = async (req, res) => {
             console.log("token is" + token);
             //password hash not now
 
+            res.cookie("schoolRegister", token);
+
+
             const registeredSchool = await RegisterSchool.save();
             res.status(201).send(registeredSchool);
         }
@@ -65,7 +68,13 @@ exports.login_school_post = async(req, res) => {
 
         const isMatch = await bcrypt.compare(schoolPassword, schoolEmailid.schoolPassword);
        
+        const token = await schoolEmailid.generateAuthToken();
+        console.log("School token is" + token);
+
+        res.cookie("schoolLogin", token);
+
         if(isMatch){
+            console.log("school Login");
             res.status(201).send("login")
         } else{
             res.send("password not match");

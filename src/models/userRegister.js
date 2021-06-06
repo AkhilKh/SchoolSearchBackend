@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema({
     city : {
         type : String
     },
-    class : {
+    classp : {
         type : String
     },
     tokens :[{

@@ -3,8 +3,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
 var multer = require('multer');
+var cors = require('cors');
 
 require("./db/conn");
+var cors = require('cors');
 // const UserRegister = require("./models/userRegister");
 // const SchoolRegister = require("./models/schoolRegister");
 
@@ -14,6 +16,7 @@ var SchoolInfo = require("./routes/schoolInfo");
 var SchoolReview = require("./routes/review");
 
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({extended: false}));
 
 // app.get("/", (req, res) => {

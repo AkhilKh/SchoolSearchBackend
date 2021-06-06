@@ -1,5 +1,6 @@
 var UserRegister = require("../models/userRegister");
 const bcrypt = require("bcryptjs");
+const cookieParser = require("cookie-parser");
 
 //upload image
 // var multer = require('multer');
@@ -53,10 +54,11 @@ exports.register_users_post = async (req, res) => {
             category : req.body.category,
             school : req.body.school,
             city : req.body.city,
-            class : req.body.class
+            classp : req.body.classp
         })
         const token = await RegisterUser.generateAuthToken();
         //password hash middleware
+        res.cookie("userjwt", token);
 
         const registered = await RegisterUser.save();
         res.status(201).send(registered);
@@ -110,9 +112,11 @@ exports.login_users_post = async(req, res) => {
 
         const isMatch = await bcrypt.compare(password, useremail.password);
 
-        // const token = await useremail.generateAuthToken();
-        // console.log("token is" + token);
+        const token = await useremail.generateAuthToken();
+        console.log("token is" + token);
     
+        res.cookie("userLogin", token);
+
         if(isMatch){
             res.status(201).send("login")
         } else{
